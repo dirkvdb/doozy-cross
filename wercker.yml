@@ -1,0 +1,30 @@
+box: dirkvdb/cxx14arm
+no-response-timeout: 10
+build:
+    steps:
+        - script:
+            name: Setup environnement variables
+            code: |
+                SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+                BUILD_DIR="${SRC_DIR}/build"
+                UPNP_VER="1.6.19"
+                echo "SRC_DIR ${SRC_DIR}"
+                echo "BUILD_DIR ${BUILD_DIR}"
+                echo "UPNP_VER ${UPNP_VER}"
+
+        - script:
+            name: Cross compile dependencies
+            code: |
+                cd cross
+                bash ./buildall.sh
+
+        - script:
+            name: Cross Compile doozy
+            code: |
+                git clone https://github.com/dirkvdb/doozy.git
+                git checkout develop
+                git submodule update --init --recursive
+                mkdir build
+                cd build
+                cmake -DCMAKE_TOOLCHAIN_FILE=../cross/toolchain-armv6.make -DCMAKE_BUILD_TYPE=Release ../doozy
+                make -j4
