@@ -22,8 +22,10 @@ build:
             name: Cross Compile doozy
             code: |
                 git clone https://github.com/dirkvdb/doozy.git
+                cd doozy
                 git checkout develop
                 git submodule update --init --recursive
+                cd ..
                 mkdir build
                 cd build
                 cmake -DCMAKE_TOOLCHAIN_FILE=../cross/toolchain-armv6.make -DCMAKE_BUILD_TYPE=Release ../doozy
