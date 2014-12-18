@@ -30,3 +30,22 @@ build:
                 cd build
                 cmake -DCMAKE_TOOLCHAIN_FILE=../cross/toolchain-armv6.make -DCMAKE_BUILD_TYPE=Release ../doozy
                 make -j4
+
+deploy:
+    steps:
+        - add-to-known_hosts:
+            hostname: dirkvdb.no-ip.biz
+        - mktemp:
+            envvar: PRIVATEKEY_PATH
+        - create-file:
+            name: write key
+            filename: $PRIVATEKEY_PATH
+            content: $FOO_PRIVATE
+            overwrite: true
+            hide-from-log: true
+        - script:
+            name: transfer application
+            code: |
+                pwd
+                ls -la
+                scp -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no build/doozy dirk@dirkvdb.no-ip.biz:~/wercker/
