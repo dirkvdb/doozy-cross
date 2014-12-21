@@ -35,7 +35,7 @@ function checkresult {
 }
 
 checkresult bash zlib.sh
-#checkresult bash ffmpeg.sh
+checkresult bash ffmpeg.sh
 checkresult bash alsa-lib.sh
 checkresult bash openal.sh
 checkresult bash libjpeg-turbo.sh
