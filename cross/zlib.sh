@@ -20,9 +20,12 @@ checkresult wget "http://zlib.net/$PACKAGE.tar.gz"
 checkresult tar xf $PACKAGE.tar.gz
 rm -f $PACKAGE.tar.gz
 
-checkresult cd $PACKAGE \
-	&& checkresult ./configure --prefix=$CURPATH/local --static \
-	&& checkresult make -j4 install	
-cd ..
+echo ${CURPATH}
+echo ${CROSS}
+checkresult mkdir -p $PACKAGE/build
+checkresult cd $PACKAGE/build && checkresult cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CURPATH/local -DCMAKE_TOOLCHAIN_FILE=$CURPATH/toolchain-${ARMARCH}.make ../ && make -j4 install
+cd ../..
 rm -rf $PACKAGE
+# remove the shared library
+rm -rf $CURPATH/local/lib/libz.s*
 

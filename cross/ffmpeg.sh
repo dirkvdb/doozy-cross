@@ -19,7 +19,7 @@ function checkresult {
 }
 
 checkresult wget "https://www.ffmpeg.org/releases/${PACKAGE}.tar.bz2"
-checkresult tar xvf $PACKAGE.tar.bz2
+checkresult tar xf $PACKAGE.tar.bz2
 rm -f $PACKAGE.tar.bz2
 
 checkresult cd $PACKAGE \

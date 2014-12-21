@@ -3,20 +3,20 @@ SET(CMAKE_SYSTEM_NAME Linux)
 #this one not so much
 SET(CMAKE_SYSTEM_VERSION 1)
 
-#SET(LIBTYPE STATIC)
-SET(CROSS /opt/x-tools6h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-)
+SET(LIBTYPE STATIC)
+#SET(CROSS /opt/x-tools6h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-)
 #SET(CROSS arm-linux-gnueabihf-)
 
-SET(CMAKE_C_COMPILER ${CROSS}gcc)
-SET(CMAKE_CXX_COMPILER ${CROSS}g++)
-SET(CMAKE_LINKER ${CROSS}ld)
+SET(CMAKE_C_COMPILER $ENV{CROSS}gcc)
+SET(CMAKE_CXX_COMPILER $ENV{CROSS}g++)
+SET(CMAKE_LINKER $ENV{CROSS}ld)
 SET(CMAKE_NM ${CROSS}nm)
-SET(CMAKE_OBJDUMP ${CROSS}objdump)
-SET(CMAKE_RANLIB ${CROSS}ranlib)
-SET(CMAKE_STRIP ${CROSS}strip)
+SET(CMAKE_OBJDUMP $ENV{CROSS}objdump)
+SET(CMAKE_RANLIB $ENV{CROSS}ranlib)
+SET(CMAKE_STRIP $ENV{CROSS}strip)
 
-SET(CMAKE_C_FLAGS "-march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3")
-SET(CMAKE_CXX_FLAGS "-march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3 -std=c++11")
+SET(CMAKE_C_FLAGS "-march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3 -DAL_LIBTYPE_STATIC" CACHE STRING "" FORCE)
+SET(CMAKE_CXX_FLAGS "-march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3 -std=c++11 -DAL_LIBTYPE_STATIC" CACHE STRING "" FORCE)
 
 SET(ENV{OPENALDIR} ${CMAKE_CURRENT_LIST_DIR}/local/)
 
