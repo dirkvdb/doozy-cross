@@ -10,10 +10,27 @@ function checkresult {
     return $status
 }
 
-#export CROSS=/opt/x-tools6h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-
-export ARMARCH=armv6
-export PATH="/usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/:$PATH"
-export CROSS=arm-linux-gnueabihf-
+if [ "$#" -ne 1 ]; then
+    echo "No toolchain provided"
+    exit 1
+fi
+
+if [ "$1" = "archarmv6" ]; then
+    export ARMARCH=armv6
+    export PATH="/opt/x-tools6h/arm-unknown-linux-gnueabihf/bin:$PATH"
+    export CROSS=arm-unknown-linux-gnueabihf-
+elif [ "$1" = "archarmv7" ]; then
+    export ARMARCH=armv7
+    export PATH="/opt/x-tools7h/arm-unknown-linux-gnueabihf/bin:$PATH"
+    export CROSS=arm-unknown-linux-gnueabihf-
+elif [ "$1" = "macv6" ]; then
+    export ARMARCH=armv6
+    export PATH="/usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/:$PATH"
+    export CROSS=arm-linux-gnueabihf-
+else
+    echo "Unknown toolchain provided: $1"
+    exit 1
+fi
 
 # cross compile dependencies
 cd cross
