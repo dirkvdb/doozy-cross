@@ -3,15 +3,6 @@ rm -rf local
 mkdir -p local/lib/pkgconfig
 mkdir -p local/include
 
-#export PATH=/opt/x-tools6h/arm-unknown-linux-gnueabihf/bin/:${PATH}
-#export POSTFIX=-4.9
-export CFLAGS="-march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3"
-
-#export PATH=/opt/x-tools7h/arm-unknown-linux-gnueabihf/bin/:${PATH}
-#export CFLAGS="-march=armv7-a -mfpu=vfpv3 -mfloat-abi=hard -O3"
-#export ARMARCH=armv7
-
-#export CROSS=arm-linux-gnueabihf-
 export CXXFLAGS="${CFLAGS} -std=c++11"
 export CC=${CROSS}gcc${POSTFIX}
 export CXX=${CROSS}g++${POSTFIX}
@@ -37,7 +28,7 @@ function checkresult {
 checkresult bash zlib.sh
 checkresult bash ffmpeg.sh
 checkresult bash alsa-lib.sh
-checkresult bash openal.sh
+checkresult bash openalhead.sh
 checkresult bash libjpeg-turbo.sh
 checkresult bash libpng.sh
 checkresult bash libmad.sh

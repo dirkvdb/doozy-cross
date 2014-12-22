@@ -19,14 +19,17 @@ if [ "$1" = "archarmv6" ]; then
     export ARMARCH=armv6
     export PATH="/opt/x-tools6h/arm-unknown-linux-gnueabihf/bin:$PATH"
     export CROSS=arm-unknown-linux-gnueabihf-
+    export CFLAGS="-march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3"
 elif [ "$1" = "archarmv7" ]; then
     export ARMARCH=armv7
     export PATH="/opt/x-tools7h/arm-unknown-linux-gnueabihf/bin:$PATH"
     export CROSS=arm-unknown-linux-gnueabihf-
+    export CFLAGS="-march=armv7-a -mfpu=vfpv3 -mfloat-abi=hard -O3"
 elif [ "$1" = "macv6" ]; then
     export ARMARCH=armv6
     export PATH="/usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/:$PATH"
     export CROSS=arm-linux-gnueabihf-
+    export CFLAGS="-march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3"
 else
     echo "Unknown toolchain provided: $1"
     exit 1

@@ -19,7 +19,7 @@ function checkresult {
 }
 
 checkresult wget "http://sourceforge.net/projects/pupnp/files/pupnp/libUPnP%201.6.19/${PACKAGE}.tar.bz2"
-checkresult tar xvf $PACKAGE.tar.bz2
+checkresult tar xf $PACKAGE.tar.bz2
 rm -f $PACKAGE.tar.bz2
 
 checkresult cd $PACKAGE \

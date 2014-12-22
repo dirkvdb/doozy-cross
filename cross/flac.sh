@@ -17,7 +17,7 @@ function checkresult {
 }
 
 checkresult wget "http://downloads.xiph.org/releases/flac/${PACKAGE}.tar.xz"
-checkresult tar xvf $PACKAGE.tar.xz
+checkresult tar xf $PACKAGE.tar.xz
 rm -f $PACKAGE.tar.xz
 
 checkresult cd $PACKAGE \

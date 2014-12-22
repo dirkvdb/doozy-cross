@@ -5,16 +5,16 @@ SET(CMAKE_SYSTEM_VERSION 1)
 
 SET(LIBTYPE STATIC)
 
-SET(CMAKE_C_COMPILER /opt/x-tools7h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-gcc)
-SET(CMAKE_CXX_COMPILER /opt/x-tools7h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-g++)
-SET(CMAKE_LINKER /opt/x-tools7h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-ld)
-SET(CMAKE_NM /opt/x-tools7h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-nm)
-SET(CMAKE_OBJDUMP /opt/x-tools7h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-objdump)
-SET(CMAKE_RANLIB /opt/x-tools7h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-ranlib)
-SET(CMAKE_STRIP /opt/x-tools7h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-strip)
+SET(CMAKE_C_COMPILER $ENV{CROSS}gcc)
+SET(CMAKE_CXX_COMPILER $ENV{CROSS}g++)
+SET(CMAKE_LINKER $ENV{CROSS}ld)
+SET(CMAKE_NM ${CROSS}nm)
+SET(CMAKE_OBJDUMP $ENV{CROSS}objdump)
+SET(CMAKE_RANLIB $ENV{CROSS}ranlib)
+SET(CMAKE_STRIP $ENV{CROSS}strip)
 
-SET(CMAKE_C_FLAGS "-march=armv7 -mfpu=vfpv3 -mfloat-abi=hard -O3")
-SET(CMAKE_CXX_FLAGS "-march=armv7 -mfpu=vfpv3 -mfloat-abi=hard -O3 -std=c++11")
+SET(CMAKE_C_FLAGS "-march=armv7 -mfpu=vfpv3 -mfloat-abi=hard -O3" CACHE STRING "" FORCE)
+SET(CMAKE_CXX_FLAGS "-march=armv7 -mfpu=vfpv3 -mfloat-abi=hard -O3 -std=c++1y" CACHE STRING "" FORCE)
 
 SET(ENV{OPENALDIR} ${CMAKE_CURRENT_LIST_DIR}/local/)
 
