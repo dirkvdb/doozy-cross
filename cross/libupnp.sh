@@ -23,7 +23,7 @@ checkresult tar xf $PACKAGE.tar.bz2
 rm -f $PACKAGE.tar.bz2
 
 checkresult cd $PACKAGE \
-	&& checkresult ./configure --host=arm-linux-gnueabi --enable-ipv6 --disable-shared --prefix=$CURPATH/local \
+	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --enable-ipv6 --disable-shared --prefix=$CURPATH/local \
 	&& checkresult make -j4 install	
 cd ..
 rm -rf $PACKAGE

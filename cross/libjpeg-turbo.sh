@@ -17,12 +17,12 @@ function checkresult {
 }
 
 checkresult wget "http://downloads.sourceforge.net/project/${NAME}/${MAJOR}.${MINOR}.${REVISION}/${PACKAGE}.tar.gz"
-checkresult tar xfv ${PACKAGE}.tar.gz
+checkresult tar xf ${PACKAGE}.tar.gz
 rm -f ${PACKAGE}.tar.gz
 
 checkresult cd $PACKAGE \
 	&& checkresult autoreconf --force --install \
-	&& checkresult ./configure --host=arm-linux-gnueabi --disable-shared --prefix=${CURPATH}/local \
+	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --disable-shared --prefix=${CURPATH}/local \
 	&& checkresult make -j4 install	
 
 cd ..

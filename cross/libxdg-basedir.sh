@@ -19,12 +19,12 @@ function checkresult {
 }
 
 checkresult wget "https://github.com/devnev/${NAME}/archive/${PACKAGE}.tar.gz"
-checkresult tar xvf $PACKAGE.tar.gz
+checkresult tar xf $PACKAGE.tar.gz
 rm -f $PACKAGE.tar.gz
 
 checkresult cd ${NAME}-$PACKAGE \
 	&& checkresult autoreconf --force --install \
-	&& checkresult ./configure --host=arm-linux-gnueabi --disable-shared --prefix=${CURPATH}/local \
+	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --disable-shared --prefix=${CURPATH}/local \
 	&& checkresult make -j4 install	
 cd ..
 rm -rf ${NAME}-$PACKAGE

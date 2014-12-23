@@ -26,9 +26,9 @@ function checkresult {
 }
 
 checkresult bash zlib.sh
-checkresult bash ffmpeg.sh
 checkresult bash alsa-lib.sh
 checkresult bash openalhead.sh
+checkresult bash ffmpeg.sh
 checkresult bash libjpeg-turbo.sh
 checkresult bash libpng.sh
 checkresult bash libmad.sh

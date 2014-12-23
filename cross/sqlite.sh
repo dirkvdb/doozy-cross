@@ -19,11 +19,11 @@ function checkresult {
 }
 
 checkresult wget "http://www.sqlite.org/2014/${NAME}-autoconf-3080702.tar.gz"
-checkresult tar xvf ${NAME}-autoconf-3080702.tar.gz
+checkresult tar xf ${NAME}-autoconf-3080702.tar.gz
 rm -f ${NAME}-autoconf-3080702.tar.gz
 
 checkresult cd ${NAME}-autoconf-3080702 \
-	&& checkresult ./configure --host=arm-linux-gnueabi --disable-shared --prefix=$CURPATH/local \
+	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --disable-shared --prefix=$CURPATH/local \
 	&& checkresult make -j4 install	
 cd ..
 rm -rf ${NAME}-autoconf-3080702

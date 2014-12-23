@@ -19,11 +19,11 @@ function checkresult {
 }
 
 checkresult wget "http://sourceforge.net/projects/mad/files/libmad/${MAJOR}.${MINOR}.${REVISION}/${PACKAGE}.tar.gz"
-checkresult tar xvf $PACKAGE.tar.gz
+checkresult tar xf $PACKAGE.tar.gz
 rm -f $PACKAGE.tar.gz
 
 checkresult cd $PACKAGE \
-	&& ./configure --host=arm-linux-gnueabi --enable-fpm=arm --disable-shared --prefix=$CURPATH/local \
+	&& ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --enable-fpm=arm --disable-shared --prefix=$CURPATH/local \
 	&& checkresult make -j4 install	
 cd ..
 rm -rf $PACKAGE

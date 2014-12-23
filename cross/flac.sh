@@ -21,7 +21,7 @@ checkresult tar xf $PACKAGE.tar.xz
 rm -f $PACKAGE.tar.xz
 
 checkresult cd $PACKAGE \
-	&& checkresult ./configure --host=arm-linux-gnueabi --disable-ogg --disable-xmms-plugin --disable-shared --prefix=$CURPATH/local \
+	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --disable-ogg --disable-xmms-plugin --disable-shared --prefix=$CURPATH/local \
 	&& checkresult make -j4 install	
 cd ..
 rm -rf $PACKAGE

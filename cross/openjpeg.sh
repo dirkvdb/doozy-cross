@@ -17,7 +17,7 @@ function checkresult {
 }
 
 checkresult wget "http://sourceforge.net/projects/${NAME}.mirror/files/${MAJOR}.${MINOR}.${REVISION}/${PACKAGE}.tar.gz"
-checkresult tar xvf ${PACKAGE}.tar.gz
+checkresult tar xf ${PACKAGE}.tar.gz
 rm -f ${PACKAGE}.tar.gz
 
 checkresult mkdir -p $PACKAGE/build
