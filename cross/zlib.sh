@@ -23,9 +23,11 @@ rm -f $PACKAGE.tar.gz
 echo ${CURPATH}
 echo ${CROSS}
 checkresult mkdir -p $PACKAGE/build
-checkresult cd $PACKAGE/build && checkresult cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CURPATH/local -DCMAKE_TOOLCHAIN_FILE=$CURPATH/toolchain-${ARMARCH}.make ../ && make -j4 install
+checkresult cd $PACKAGE/build && checkresult cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_TOOLCHAIN_FILE=$CURPATH/toolchain-${ARMARCH}.make .. \
+	&& checkresult make -j4 \
+	&& checkresult make DESTDIR=$CURPATH/local install
 cd ../..
 rm -rf $PACKAGE
 # remove the shared library
-rm -rf $CURPATH/local/lib/libz.s*
+rm -rf $CURPATH/local/usr/lib/libz.s*
 

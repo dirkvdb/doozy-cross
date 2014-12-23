@@ -51,9 +51,10 @@ checkresult cd $PACKAGE \
         --enable-demuxer=pcm_u8 \
         --enable-demuxer=pcm_s8 \
         --enable-demuxer=xwma \
-        --prefix=$CURPATH/local \
-	&& checkresult make -j4 install	
+        --prefix=/usr \
+	&& checkresult make -j4 \
+    && checkresult make DESTDIR=$CURPATH/local install
 cd ..
 rm -rf $PACKAGE
-cp mad.pc $CURPATH/local/lib/pkgconfig/
+
 

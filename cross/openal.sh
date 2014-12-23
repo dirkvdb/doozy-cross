@@ -11,7 +11,7 @@ function checkresult {
     local status=$?
     if [ $status -ne 0 ]; then
         echo "error with $@ status=$status" >&2
-		exit $status
+        exit $status
     fi
     return $status
 }
@@ -22,7 +22,9 @@ rm -f $PACKAGE.tar.bz2
 
 checkresult mkdir -p $PACKAGE/build
 checkresult cd $PACKAGE && checkresult patch -p1 < ../openallib.patch
-checkresult cd build && checkresult cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CURPATH/local -DCMAKE_TOOLCHAIN_FILE=$CURPATH/toolchain-${ARMARCH}.make ../ && make -j4 install
+checkresult cd build && checkresult cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_TOOLCHAIN_FILE=$CURPATH/toolchain-${ARMARCH}.make .. \
+    && checkresult make -j4 \
+    && checkresult make DESTDIR=$CURPATH/local install
 cd ../../
 rm -rf $PACKAGE
 

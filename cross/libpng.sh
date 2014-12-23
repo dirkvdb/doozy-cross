@@ -5,8 +5,8 @@ REVISION=16
 NAME=libpng
 PACKAGE=${NAME}-${MAJOR}.${MINOR}.${REVISION}
 CURPATH=`pwd`
-export CPPFLAGS="${CFLAGS} -I${CURPATH}/local/include"
-export LDFLAGS="${LDFLAGS} -L${CURPATH}/local/lib"
+export CPPFLAGS="${CFLAGS} -I${CURPATH}/local/usr/include"
+export LDFLAGS="${LDFLAGS} -L${CURPATH}/local/usr/lib"
 
 function checkresult {
     "$@"
@@ -23,8 +23,9 @@ checkresult tar xf ${PACKAGE}.tar.gz
 rm -f ${PACKAGE}.tar.gz
 
 checkresult cd ${PACKAGE} \
-	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --disable-shared --prefix=$CURPATH/local \
-	&& checkresult make -j4 install
+	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --disable-shared --prefix=/usr \
+	&& checkresult make -j4 \
+    && checkresult make DESTDIR=$CURPATH/local install
 cd ..
 rm -rf ${PACKAGE}
 

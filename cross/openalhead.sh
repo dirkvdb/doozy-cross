@@ -18,7 +18,9 @@ checkresult tar xf HEAD.tar.gz
 rm -f HEAD.tar.gz
 
 checkresult mkdir -p $NAME/build
-checkresult cd $NAME/build && checkresult cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CURPATH/local -DCMAKE_TOOLCHAIN_FILE=$CURPATH/toolchain-${ARMARCH}.make ../ && make -j4 install
+checkresult cd $NAME/build && checkresult cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_TOOLCHAIN_FILE=$CURPATH/toolchain-${ARMARCH}.make .. \
+	&& checkresult make -j4 \
+	&& checkresult make DESTDIR=$CURPATH/local install
 cd ../../
 rm -rf $NAME
 

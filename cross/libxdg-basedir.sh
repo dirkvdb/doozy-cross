@@ -24,8 +24,9 @@ rm -f $PACKAGE.tar.gz
 
 checkresult cd ${NAME}-$PACKAGE \
 	&& checkresult autoreconf --force --install \
-	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --disable-shared --prefix=${CURPATH}/local \
-	&& checkresult make -j4 install	
+	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --disable-shared --prefix=/usr \
+	&& checkresult make -j4 \
+    && checkresult make DESTDIR=$CURPATH/local install
 cd ..
 rm -rf ${NAME}-$PACKAGE
 

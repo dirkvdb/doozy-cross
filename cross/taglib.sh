@@ -21,7 +21,9 @@ checkresult tar xf $PACKAGE.tar.gz
 rm -f $PACKAGE.tar.gz
 
 checkresult mkdir -p $PACKAGE/build
-checkresult cd $PACKAGE/build && checkresult cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CURPATH/local -DENABLE_STATIC=ON -DCMAKE_TOOLCHAIN_FILE=$CURPATH/toolchain-${ARMARCH}.make ../ && make -j4 install
+checkresult cd $PACKAGE/build && checkresult cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_STATIC=ON -DCMAKE_TOOLCHAIN_FILE=$CURPATH/toolchain-${ARMARCH}.make .. \
+	&& checkresult make -j4 \
+	&& checkresult make DESTDIR=$CURPATH/local install
 cd ../../
 rm -rf $PACKAGE
 

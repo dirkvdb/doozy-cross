@@ -23,13 +23,8 @@ checkresult tar xf $PACKAGE.tar.bz2
 rm -f $PACKAGE.tar.bz2
 
 checkresult cd $PACKAGE \
-    && checkresult ./configure --host=arm-linux-gnueabi --disable-dependency-tracking --disable-shared --disable-python --disable-rawmidi --disable-ucm --disable-alisp --with-libdl=no --disable-old-symbols --prefix=/usr --sysconfdir=/etc] \
+    && checkresult ./configure --host=arm-linux-gnueabi --disable-dependency-tracking --disable-shared --disable-python --disable-rawmidi --disable-ucm --disable-alisp --with-libdl=no --disable-old-symbols --prefix=/usr \
     && checkresult make -j4 \
-    && checkresult make DESTDIR=$CURPATH/alsa install 
+    && checkresult make DESTDIR=$CURPATH/local install 
 cd ..
 rm -rf $PACKAGE
-
-# move the library and headers
-cp -r $CURPATH/alsa/usr/lib/* $CURPATH/local/lib/
-cp -r $CURPATH/alsa/usr/include/* $CURPATH/*local/include/
-rm -rf $CURPATH/alsa/

@@ -1,7 +1,7 @@
 #!/bin/bash
 rm -rf local
-mkdir -p local/lib/pkgconfig
-mkdir -p local/include
+mkdir -p local/usr/lib/pkgconfig
+mkdir -p local/usr/include
 
 export CXXFLAGS="${CFLAGS} -std=c++11"
 export CC=${CROSS}gcc${POSTFIX}
