@@ -23,7 +23,7 @@ checkresult tar xf $PACKAGE.tar.bz2
 rm -f $PACKAGE.tar.bz2
 
 checkresult cd $PACKAGE \
-	&& checkresult ./configure --disable-dependency-tracking --target-os=linux --cc=${CC} --ar=${AR} --ranlib=${RANLIB} --arch=armel --enable-armv6 --enable-cross-compile --disable-shared \
+	&& checkresult ./configure --target-os=linux --cc=${CC} --ar=${AR} --ranlib=${RANLIB} --arch=armel --enable-armv6 --enable-cross-compile --disable-shared \
         --disable-avdevice --disable-doc --disable-htmlpages --disable-manpages --disable-programs \
         --disable-encoders --disable-muxers --disable-decoders --disable-swscale \
         --enable-gpl \
