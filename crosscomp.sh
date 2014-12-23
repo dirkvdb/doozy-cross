@@ -58,4 +58,4 @@ mkdir build
 cd build
 checkresult cmake -DCMAKE_TOOLCHAIN_FILE=../cross/toolchain-armv6.make -DCMAKE_BUILD_TYPE=Release -DSTATIC_BINARY=ON ../doozy
 checkresult make -j4
-${CROSS}strip --strip-unneeded ./build/doozy
+${CROSS}strip --strip-unneeded ./doozy
