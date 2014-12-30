@@ -23,7 +23,7 @@ checkresult tar xf $PACKAGE.tar.bz2
 rm -f $PACKAGE.tar.bz2
 
 checkresult cd $PACKAGE \
-    && checkresult ./configure --host=arm-linux-gnueabi --disable-dependency-tracking --disable-shared --disable-python --disable-rawmidi --disable-ucm --disable-alisp --with-libdl=no --disable-old-symbols --prefix=/usr \
+    && checkresult ./configure --host=${HOST} --disable-dependency-tracking --disable-shared --disable-python --disable-rawmidi --disable-ucm --disable-alisp --with-libdl=no --disable-old-symbols --prefix=/usr \
     && checkresult make -j4 \
     && checkresult make DESTDIR=$CURPATH/local install 
 cd ..
