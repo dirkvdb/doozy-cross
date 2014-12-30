@@ -58,13 +58,12 @@ fi
 export CXXFLAGS="${CFLAGS} ${CXXFLAGS} -std=c++1y"
 
 # cross compile dependencies
-#cd cross
-#checkresult bash ./buildall.sh
-#cd ..
+cd cross
+checkresult bash ./buildall.sh
+cd ..
 
 # Cross Compile doozy
 rm -rf build doozy
-#rm -rf build
 checkresult git clone https://github.com/dirkvdb/doozy.git
 cd doozy
 checkresult git checkout develop
