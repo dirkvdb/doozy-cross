@@ -1,7 +1,7 @@
 #!/bin/bash
 MAJOR=2
 MINOR=5
-REVISION=1
+REVISION=2
 NAME=ffmpeg
 PACKAGE=${NAME}-${MAJOR}.${MINOR}.${REVISION}
 CURPATH=`pwd`
@@ -26,15 +26,16 @@ checkresult cd $PACKAGE \
 	&& checkresult ./configure --target-os=linux --cc=${CC} --ar=${AR} --ranlib=${RANLIB} --arch=armel --enable-armv6 --enable-cross-compile --disable-shared \
         --disable-avdevice --disable-doc --disable-htmlpages --disable-manpages --disable-programs \
         --disable-encoders --disable-muxers --disable-decoders --disable-swscale \
-        --enable-gpl \
+        --enable-gpl --enable-network \
         --disable-everything \
         --enable-decoder=flac \
         --enable-decoder=mp3 \
         --enable-decoder=wmav1 \
         --enable-decoder=wmav2 \
-        --enable-decoder=wmavlossless \
+        --enable-decoder=wmalossless \
         --enable-decoder=wmapro \
-        --enable-decoder=pcm \
+        --enable-decoder=pcm_u8 \
+        --enable-decoder=pcm_s8 \
         --enable-decoder=vorbis \
         --enable-parser=ac3 \
         --enable-parser=aac \
