@@ -28,6 +28,10 @@ checkresult cd $PACKAGE \
         --disable-encoders --disable-muxers --disable-decoders --disable-swscale \
         --enable-gpl --enable-network \
         --disable-everything \
+        --enable-protocol=http \
+        --enable-decoder=aac \
+        --enable-decoder=alac \
+        --enable-decoder=ac3 \
         --enable-decoder=flac \
         --enable-decoder=mp3 \
         --enable-decoder=wmav1 \
