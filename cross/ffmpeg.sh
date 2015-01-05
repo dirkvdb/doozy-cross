@@ -43,6 +43,7 @@ checkresult cd $PACKAGE \
         --enable-decoder=vorbis \
         --enable-parser=ac3 \
         --enable-parser=aac \
+        --enable-parser=aac_latm \
         --enable-parser=flac \
         --enable-parser=mpegaudio \
         --enable-parser=vorbis \
@@ -56,6 +57,7 @@ checkresult cd $PACKAGE \
         --enable-demuxer=pcm_u8 \
         --enable-demuxer=pcm_s8 \
         --enable-demuxer=xwma \
+        --enable-demuxer=mov \
         --prefix=/usr \
 	&& checkresult make -j4 \
     && checkresult make DESTDIR=$CURPATH/local install
