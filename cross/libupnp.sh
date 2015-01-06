@@ -23,7 +23,7 @@ checkresult tar xf $PACKAGE.tar.bz2
 rm -f $PACKAGE.tar.bz2
 
 checkresult cd $PACKAGE \
-	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --enable-ipv6 --disable-shared --disable-samples --disable-blocking-tcp-connections --prefix=/usr \
+	&& checkresult ./configure --enable-debug --disable-dependency-tracking --host=arm-linux-gnueabi --enable-ipv6 --disable-shared --disable-samples --disable-blocking-tcp-connections --prefix=/usr \
 	&& checkresult make -j4 \
     && checkresult make DESTDIR=$CURPATH/local install
 cd ..
