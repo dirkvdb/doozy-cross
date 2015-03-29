@@ -42,22 +42,24 @@ fi
 pwd=`pwd`
 
 export PKG_CONFIG_PATH=${pwd}/cross/local/lib/pkgconfig
+export PKG_CONFIG_LIBDIR=${PKG_CONFIG_PATH}
+export PKG_DIR=${pwd}/cross/local
 export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 
 # cross compile dependencies
-#rm -rf cross
-#mkdir cross
-#cd cross
-#checkresult cmake .. -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
-#checkresult make -j4
-#cd ..
+rm -rf cross
+mkdir cross
+cd cross
+checkresult cmake ../packages -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
+checkresult make -j4
+cd ..
 
 # Cross Compile doozy
 rm -rf build
 mkdir build
 cd build
-checkresult cmake ../doozy -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN} -DPKG_DIR=${pwd}/cross/local
+checkresult cmake ../doozy -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN}
 checkresult make -j4
 #checkresult cmake -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN} -DCMAKE_BUILD_TYPE=Release -DSTATIC_BINARY=ON -DTESTTOOLS=ON -DPKG_DIR=${pwd}/cross ../doozy
 #checkresult make -j4

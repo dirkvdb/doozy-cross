@@ -24,3 +24,5 @@ ADD_SUBDIRECTORY(libjpeg-turbo)
 ADD_SUBDIRECTORY(libxdg-basedir)
 
 ADD_DEPENDENCIES(libpng zlib)
+ADD_DEPENDENCIES(taglib zlib)
+ADD_DEPENDENCIES(openal-soft alsa-lib)
