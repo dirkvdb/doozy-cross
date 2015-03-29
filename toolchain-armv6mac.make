@@ -9,14 +9,12 @@ SET(CROSS /usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf
 SET(PKG_CONFIG_EXECUTABLE ${CROSS}pkg-config)
 
 SET(CMAKE_C_COMPILER ${CROSS}gcc)
-SET(CMAKE_CXX_COMPILER ${CROSS}g++)
-SET(CMAKE_LINKER ${CROSS}ld)
 
 SET(CMAKE_C_FLAGS "-march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3" CACHE STRING "" FORCE)
 SET(CMAKE_CXX_FLAGS "-march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3 -std=c++1y" CACHE STRING "" FORCE)
 
 # search for programs in the build host directories
-SET(CMAKE_FIND_ROOT_PATH ${PKG_DIR})
+SET(CMAKE_FIND_ROOT_PATH $ENV{PKG_DIR})
 SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 # for libraries and headers in the target directories
 SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
