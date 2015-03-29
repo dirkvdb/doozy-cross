@@ -22,8 +22,19 @@ checkresult wget "http://sourceforge.net/projects/mad/files/libmad/${MAJOR}.${MI
 checkresult tar xf $PACKAGE.tar.gz
 rm -f $PACKAGE.tar.gz
 
+if [ x"${ARMARCH}" = x"native" ]; then
+    FPM=64bit
+else
+    FPM=arm
+fi
+
+if [ x"${ARMARCH}" = x"android" ]; then
+    HOST="arm-linux-gnueabi"
+fi
+
 checkresult cd $PACKAGE \
-	&& checkresult ./configure --disable-dependency-tracking --host=arm-linux-gnueabi --enable-fpm=arm --disable-shared --prefix=/usr \
+    && checkresult patch -p1 < ../libmad-0.15.1b-remove-force-mem.patch \
+	&& checkresult ./configure --disable-dependency-tracking --host=${HOST} --enable-fpm=${FPM} --disable-shared --prefix=/usr \
 	&& checkresult make -j4 \
     && checkresult make DESTDIR=$CURPATH/local install
 cd ..

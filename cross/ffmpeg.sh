@@ -22,8 +22,16 @@ checkresult wget "https://www.ffmpeg.org/releases/${PACKAGE}.tar.bz2"
 checkresult tar xf $PACKAGE.tar.bz2
 rm -f $PACKAGE.tar.bz2
 
+if [ x"${ARMARCH}" = x"native" ]; then
+    TARGETSETTING=
+    COMPSETTING="--cc=${CC} --arch=x86_64 --disable-iconv"
+else
+    TARGETSETTING=--target-os=linux
+    COMPSETTING="--enable-cross-compile --arch=armel --enable-armv6 --cc=${CC} --ar=${AR} --ranlib=${RANLIB}"
+fi
+
 checkresult cd $PACKAGE \
-	&& checkresult ./configure --target-os=linux --cc=${CC} --ar=${AR} --ranlib=${RANLIB} --arch=armel --enable-armv6 --enable-cross-compile --disable-shared \
+	&& checkresult ./configure ${TARGETSETTING} ${COMPSETTING} --disable-shared \
         --disable-avdevice --disable-doc --disable-htmlpages --disable-manpages --disable-programs \
         --disable-encoders --disable-muxers --disable-decoders --disable-swscale \
         --enable-gpl --enable-network \
@@ -58,6 +66,7 @@ checkresult cd $PACKAGE \
         --enable-demuxer=pcm_s8 \
         --enable-demuxer=xwma \
         --enable-demuxer=mov \
+        --enable-bsf=aac_adtstoasc \
         --prefix=/usr \
 	&& checkresult make -j4 \
     && checkresult make DESTDIR=$CURPATH/local install
