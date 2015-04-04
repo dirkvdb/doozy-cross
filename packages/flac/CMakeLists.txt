@@ -1,0 +1,11 @@
+SET(MAJOR 1)
+SET(MINOR 3)
+SET(REVISION 1)
+SET(NAME flac)
+SET(PACKAGE ${NAME}-${MAJOR}.${MINOR}.${REVISION})
+
+EXTERNALPROJECT_ADD(${NAME}
+    URL http://downloads.xiph.org/releases/flac/${PACKAGE}.tar.xz TIMEOUT 30
+    INSTALL_DIR ${CMAKE_BINARY_DIR}/local
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${CROSS_ARGS} --disable-dependency-tracking --host=${HOST} --prefix=<INSTALL_DIR> --disable-shared --disable-ogg --disable-xmms-plugin
+)

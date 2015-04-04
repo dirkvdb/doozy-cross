@@ -5,7 +5,7 @@ build:
         - script:
             name: Cross Compile doozy
             code: |
-                bash ./crosscomp.sh archarmv6
+                bash ./build.sh archarmv6
 
 deploy:
     steps:
