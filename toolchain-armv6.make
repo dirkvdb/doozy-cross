@@ -8,27 +8,22 @@ LIST(APPEND CMAKE_PROGRAM_PATH /opt/x-tools6h/arm-unknown-linux-gnueabihf/bin)
 SET(LIBTYPE STATIC)
 SET(HOST arm-linux-gnueabi)
 SET(CROSS arm-unknown-linux-gnueabihf-)
+SET(PKG_CONFIG_EXECUTABLE ${CROSS}pkg-config)
 
 SET(CMAKE_C_COMPILER ${CROSS}gcc)
 SET(CMAKE_CXX_COMPILER ${CROSS}g++)
 SET(CMAKE_LINKER ${CROSS}ld)
-SET(CMAKE_NM ${CROSS}nm)
-SET(CMAKE_OBJDUMP ${CROSS}objdump)
-SET(CMAKE_RANLIB ${CROSS}ranlib)
-SET(CMAKE_STRIP ${CROSS}strip)
 
 SET(CMAKE_C_FLAGS "--sysroot=${CMAKE_BINARY_DIR}/local -march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3" CACHE STRING "" FORCE)
 SET(CMAKE_CXX_FLAGS "--sysroot=${CMAKE_BINARY_DIR}/local -march=armv6j -mfpu=vfp -mfloat-abi=hard -marm -O3 -std=c++1y" CACHE STRING "" FORCE)
 
-SET(ENV{OPENALDIR} ${CMAKE_CURRENT_LIST_DIR}/local/)
-
 # search for programs in the build host directories
-SET(CMAKE_FIND_ROOT_PATH ${CMAKE_CURRENT_LIST_DIR}/local/)
+SET(CMAKE_FIND_ROOT_PATH ${PKG_DIR})
 SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 # for libraries and headers in the target directories
 SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
-SET(ENV{PKG_CONFIG_PATH} ${CMAKE_CURRENT_LIST_DIR}/local/usr/lib/pkgconfig)
-SET(ENV{PKG_CONFIG_LIBDIR} ${CMAKE_CURRENT_LIST_DIR}/local/usr/lib/pkgconfig)
-SET(ENV{PKG_CONFIG_SYSROOT_DIR} ${CMAKE_CURRENT_LIST_DIR}/local/)
+#SET(ENV{PKG_CONFIG_PATH} ${CMAKE_CURRENT_LIST_DIR}/local/usr/lib/pkgconfig)
+#SET(ENV{PKG_CONFIG_LIBDIR} ${CMAKE_CURRENT_LIST_DIR}/local/usr/lib/pkgconfig)
+#SET(ENV{PKG_CONFIG_SYSROOT_DIR} ${CMAKE_CURRENT_LIST_DIR}/local/)
