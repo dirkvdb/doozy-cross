@@ -13,7 +13,7 @@ ELSE ()
 ENDIF ()
 
 EXTERNALPROJECT_ADD(${NAME}
-    URL https://www.ffmpeg.org/releases/${PACKAGE}.tar.bz2 TIMEOUT 30
+    URL http://www.ffmpeg.org/releases/${PACKAGE}.tar.bz2 TIMEOUT 30
     INSTALL_DIR ${CMAKE_BINARY_DIR}/local
     CONFIGURE_COMMAND <SOURCE_DIR>/configure ${TARGETSETTING} ${COMPSETTING} --prefix=<INSTALL_DIR> --disable-shared --disable-avdevice --disable-doc --disable-htmlpages --disable-manpages --disable-programs
         --disable-encoders --disable-muxers --disable-decoders --disable-swscale
