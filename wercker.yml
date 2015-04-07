@@ -5,7 +5,6 @@ build:
         - script:
             name: Cross Compile doozy
             code: |
-                curl-config --protocols
                 bash ./build.sh archarmv6
 
 deploy:
