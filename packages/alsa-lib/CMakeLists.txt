@@ -7,5 +7,6 @@ SET(PACKAGE ${NAME}-${MAJOR}.${MINOR}.${REVISION})
 EXTERNALPROJECT_ADD(${NAME}
     URL ftp://ftp.alsa-project.org/pub/lib/${PACKAGE}.tar.bz2 TIMEOUT 30
     INSTALL_DIR ${CMAKE_BINARY_DIR}/local
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${CROSS_ARGS} --disable-dependency-tracking --host=${HOST} --prefix=<INSTALL_DIR> --disable-shared --disable-python --disable-rawmidi --disable-ucm --disable-alisp --with-libdl=no --disable-old-symbols
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${CROSS_ARGS} --disable-dependency-tracking --host=${HOST} --prefix=/usr --disable-shared --disable-python --disable-rawmidi --disable-ucm --disable-alisp --with-libdl=no --disable-old-symbols
+    INSTALL_COMMAND make DESTDIR=<INSTALL_DIR> install
 )
