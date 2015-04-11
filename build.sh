@@ -52,7 +52,7 @@ rm -rf cross
 mkdir cross
 cd cross
 checkresult cmake ../packages -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
-checkresult make -j1
+checkresult make -j4
 cd ..
 
 # Cross Compile doozy
