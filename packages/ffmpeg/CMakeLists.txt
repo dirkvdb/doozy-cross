@@ -6,21 +6,20 @@ SET(PACKAGE ${NAME}-${MAJOR}.${MINOR}.${REVISION})
 
 IF (CMAKE_SYSTEM_NAME MATCHES "Darwin")
     IF (HOST MATCHES i686-apple-darwin)
-        SET (ARCHSETTING --arch=x86)
+        SET(ARCHSETTING --arch=i686)
+        SET(COMPSETTING --cc=${CMAKE_C_COMPILER}\ -m32 --disable-iconv)
     ELSE ()
         SET (ARCHSETTING --arch=x86_64)
+        SET(COMPSETTING --cc=${CMAKE_C_COMPILER} --disable-iconv)
     ENDIF ()
-    SET(TARGETSETTING)
-    SET(COMPSETTING --cc=${CMAKE_C_COMPILER} --disable-iconv)
+
+    # make sure gas-preprocessor.pl is in the path
     SET($ENV{PATH} "$ENV{PATH}:${CMAKE_CURRENT_SOURCE_DIR}")
 ELSE ()
     SET(TARGETSETTING --target-os=linux)
     SET(ARCHSETTING --arch=armel)
     SET(COMPSETTING --enable-cross-compile --enable-armv6 --cc=${CMAKE_C_COMPILER} --ar=${CMAKE_AR} --ranlib=${CMAKE_RANLIB})
 ENDIF ()
-
-# make sure gas-preprocessor.pl is in the path
-#export PATH=$PATH:${pwd}/packages/ffmpeg
 
 EXTERNALPROJECT_ADD(${NAME}
     URL http://www.ffmpeg.org/releases/${PACKAGE}.tar.bz2 TIMEOUT 30

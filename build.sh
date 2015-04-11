@@ -61,6 +61,4 @@ mkdir build
 cd build
 checkresult cmake ../doozy -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN}
 checkresult make -j4
-#checkresult cmake -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN} -DCMAKE_BUILD_TYPE=Release -DSTATIC_BINARY=ON -DTESTTOOLS=ON -DPKG_DIR=${pwd}/cross ../doozy
-#checkresult make -j4
 #${CROSS}strip --strip-unneeded ./doozy
