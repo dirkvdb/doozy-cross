@@ -22,10 +22,12 @@ fi
 #    export PATH="${CURPATH}/cross:$PATH"
 #fi
 
-if [ "$1" = "native" ]; then
+pwd=`pwd`
+
+if [ "$1" = "macnative" ]; then
     TOOLCHAIN=toolchain-native.make
-    #export NASM=/opt/local/bin/nasm
-    #export HOST="x86_64-apple-darwin"
+elif [ "$1" = "macnative32" ]; then
+    TOOLCHAIN=toolchain-native-32.make
 elif [ "$1" = "archarmv6" ]; then
     TOOLCHAIN=toolchain-armv6.make
 elif [ "$1" = "archarmv7" ]; then
@@ -35,11 +37,9 @@ elif [ "$1" = "macv6" ]; then
 elif [ "$1" = "android" ]; then
     TOOLCHAIN=toolchain-androidv7.make
 else
-    echo "Unknown toolchain provided: $1. Choices: archarmv6|archarmv7|macv6|android"
+    echo "Unknown toolchain provided: $1. Choices: archarmv6|archarmv7|macv6|android|macnative|macnative32"
     exit 1
 fi
-
-pwd=`pwd`
 
 export PKG_CONFIG_PATH=${pwd}/cross/local/lib/pkgconfig
 export PKG_CONFIG_LIBDIR=${PKG_CONFIG_PATH}
@@ -52,7 +52,7 @@ rm -rf cross
 mkdir cross
 cd cross
 checkresult cmake ../packages -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
-checkresult make -j4
+checkresult make -j1
 cd ..
 
 # Cross Compile doozy
