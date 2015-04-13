@@ -59,7 +59,7 @@ export ac_cv_func_realloc_0_nonnull=yes
 mkdir -p cross
 cd cross
 checkresult cmake ../packages -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
-checkresult make -j1
+checkresult make -j4
 cd ..
 
 # Cross Compile doozy
