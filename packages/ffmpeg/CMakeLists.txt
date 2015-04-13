@@ -4,6 +4,10 @@ SET(REVISION 1)
 SET(NAME ffmpeg)
 SET(PACKAGE ${NAME}-${MAJOR}.${MINOR}.${REVISION})
 
+IF (CMAKE_BUILD_TYPE MATCHES Debug)
+    SET (DBGSETTING --enable-debug=3)
+ENDIF ()
+
 IF (CMAKE_SYSTEM_NAME MATCHES "Darwin")
     IF (HOST MATCHES i686-apple-darwin)
         SET(ARCHSETTING --arch=i686)
@@ -24,11 +28,12 @@ ENDIF ()
 EXTERNALPROJECT_ADD(${NAME}
     URL http://www.ffmpeg.org/releases/${PACKAGE}.tar.bz2 TIMEOUT 30
     INSTALL_DIR ${CMAKE_BINARY_DIR}/local
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${TARGETSETTING} ${COMPSETTING} ${ARCHSETTING} --prefix=<INSTALL_DIR> --disable-shared --disable-avdevice --disable-doc --disable-htmlpages --disable-manpages --disable-programs
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${TARGETSETTING} ${COMPSETTING} ${ARCHSETTING} ${DBGSETTING} --prefix=<INSTALL_DIR> --disable-shared --disable-avdevice --disable-doc --disable-htmlpages --disable-manpages --disable-programs
         --disable-encoders --disable-muxers --disable-decoders --disable-swscale
         --enable-gpl --enable-network
         --disable-everything
         --enable-protocol=http
+        --enable-protocol=file
         --enable-decoder=aac
         --enable-decoder=alac
         --enable-decoder=ac3

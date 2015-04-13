@@ -9,7 +9,7 @@ SET(CMAKE_C_COMPILER clang)
 
 SET(CMAKE_C_FLAGS "-m32 -O3" CACHE STRING "" FORCE)
 SET(CMAKE_CXX_FLAGS "-m32 -O3 -std=c++1y" CACHE STRING "" FORCE)
-SET(CMAKE_EXE_LINKER_FLAGS "-m32")
+SET(CMAKE_EXE_LINKER_FLAGS "-m32 -framework CoreAudio -framework AudioUnit -framework AudioToolbox -framework ApplicationServices" CACHE STRING "" FORCE)
 
 SET(CMAKE_FIND_ROOT_PATH $ENV{PKG_DIR})
 

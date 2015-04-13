@@ -10,8 +10,16 @@ function checkresult {
     return $status
 }
 
+if [ "$1" = "clean" ]; then
+    echo "Cleaning..."
+    rm -rf build
+    rm -rf cross
+    echo "Done"
+    exit 0
+fi
+
 if [ "$#" -ne 1 ]; then
-    echo "No toolchain provided. Choices: archarmv6|archarmv7|macv6|android|native"
+    echo "No toolchain provided: $1. Choices: archarmv6|archarmv7|macv6|android|macnative|macnative32"
     exit 1
 fi
 
@@ -48,16 +56,14 @@ export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 
 # cross compile dependencies
-rm -rf cross
-mkdir cross
+mkdir -p cross
 cd cross
 checkresult cmake ../packages -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
-checkresult make -j4
+checkresult make -j1
 cd ..
 
 # Cross Compile doozy
-rm -rf build
-mkdir build
+mkdir -p build
 cd build
 checkresult cmake ../doozy -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN}
 checkresult make -j4
