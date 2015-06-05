@@ -1,0 +1,4 @@
+[submodule "doozy"]
+	path = doozy
+	url = https://dirkvdb@github.com/dirkvdb/doozy.git
+	branch = develop
