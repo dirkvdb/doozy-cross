@@ -24,4 +24,6 @@ deploy:
             code: |
                 pwd
                 ls -la
+                ls -la build/
+                ls -la build/local/bin
                 scp -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no build/local/bin/doozy dirk@dirkvdb.no-ip.biz:~/wercker/
