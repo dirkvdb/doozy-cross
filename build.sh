@@ -23,13 +23,6 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-# make sure the gas-preprocessor script is in the path on osx
-#UNAME=`uname`
-#if [ "${UNAME}" = "Darwin" ]; then
-#    CURPATH=`pwd`
-#    export PATH="${CURPATH}/cross:$PATH"
-#fi
-
 pwd=`pwd`
 
 if [ "$1" = "macnative" ]; then
