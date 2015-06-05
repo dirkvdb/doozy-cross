@@ -62,13 +62,14 @@ cp -r packages/raspifirmware/vc/include/* cross/local/include/
 cp -r packages/raspifirmware/vc/lib/* cross/local/lib
 
 cd cross
-checkresult cmake ../packages -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
+checkresult cmake ../packages -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
 checkresult make -j4
 cd ..
 
 # Cross Compile doozy
 mkdir -p build
 cd build
-checkresult cmake ../doozy -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN}
+checkresult cmake ../doozy -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN} -DCMAKE_INSTALL_PREFIX=${pwd}/build/local
 checkresult make -j4
+checkresult make install
 #${CROSS}strip --strip-unneeded ./doozy

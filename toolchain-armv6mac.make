@@ -9,6 +9,7 @@ SET(CROSS /usr/local/linaro/arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf
 SET(PKG_CONFIG_EXECUTABLE ${CROSS}pkg-config)
 
 SET(CMAKE_EXE_LINKER_FLAGS "-Wl,-rpath-link,${CMAKE_CURRENT_LIST_DIR}/cross/local/lib")
+SET(CMAKE_EXE_LINKER_FLAGS_RELEASE "-s")
 
 SET(CMAKE_C_COMPILER ${CROSS}gcc)
 
