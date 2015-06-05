@@ -56,7 +56,11 @@ export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 
 # cross compile dependencies
-mkdir -p cross
+mkdir -p cross/local/include
+mkdir -p cross/local/lib
+cp -r packages/raspifirmware/vc/include/* cross/local/include/
+cp -r packages/raspifirmware/vc/lib/* cross/local/lib
+
 cd cross
 checkresult cmake ../packages -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
 checkresult make -j4
