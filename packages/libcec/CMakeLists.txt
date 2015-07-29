@@ -5,8 +5,9 @@ SET(NAME libcec)
 SET(PACKAGE ${NAME}-${MAJOR}.${MINOR}.${REVISION})
 
 EXTERNALPROJECT_ADD(${NAME}
+    DEPENDS libplatform
     URL https://github.com/Pulse-Eight/libcec/archive/${PACKAGE}.tar.gz TIMEOUT 30
     INSTALL_DIR ${CMAKE_BINARY_DIR}/local
-    PATCH_COMMAND autoreconf --force --install
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure ${CROSS_ARGS} --disable-dependency-tracking --host=${HOST} --enable-rpi --with-rpi-include-path=${CMAKE_CURRENT_SOURCE_DIR}/../raspifirmware/vc/include --with-rpi-lib-path=${CMAKE_CURRENT_SOURCE_DIR}/../raspifirmware/vc/lib --prefix=<INSTALL_DIR> --disable-static --enable-shared
+    CMAKE_ARGS ${EXTRA_OPTS} -DSKIP_PYTHON_WRAPPER=1 -DRPI_INCLUDE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/../raspifirmware/vc/include -DRPI_LIB_DIR=${CMAKE_CURRENT_SOURCE_DIR}/../raspifirmware/vc/lib -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR> -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
+    INSTALL_COMMAND make DESTDIR=<INSTALL_DIR> install
 )
