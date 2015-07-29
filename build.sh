@@ -49,6 +49,7 @@ export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 
 # cross compile dependencies
+rm -rf cross
 mkdir -p cross/local/include
 mkdir -p cross/local/lib
 cp -r packages/raspifirmware/vc/include/* cross/local/include/
@@ -60,9 +61,11 @@ checkresult make -j4
 cd ..
 
 # Cross Compile doozy
+rm -rf build
 mkdir -p build
+mkdir -p out
 cd build
-checkresult cmake ../doozy -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN} -DCMAKE_INSTALL_PREFIX=${pwd}/build/local
+checkresult cmake ../doozy -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN} -DCMAKE_INSTALL_PREFIX=${pwd}/out/$1
 checkresult make -j4
 checkresult make install
 #${CROSS}strip --strip-unneeded ./doozy

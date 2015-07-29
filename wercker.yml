@@ -3,9 +3,13 @@ no-response-timeout: 10
 build:
     steps:
         - script:
-            name: Cross Compile doozy
+            name: Cross Compile doozy armv6
             code: |
                 bash ./build.sh archarmv6
+        - script:
+            name: Cross Compile doozy armv7
+            code: |
+                bash ./build.sh archarmv7
 
 deploy:
     steps:
@@ -26,4 +30,4 @@ deploy:
                 ls -la
                 ls -la build/
                 ls -la build/local/bin
-                scp -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no build/local/bin/doozy dirk@dirkvdb.no-ip.biz:~/wercker/
+                scp -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no out/archarmv6/bin/doozy dirk@dirkvdb.no-ip.biz:~/wercker/
