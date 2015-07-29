@@ -13,9 +13,8 @@ SET(CMAKE_OBJDUMP $ENV{CROSS}objdump)
 SET(CMAKE_RANLIB $ENV{CROSS}ranlib)
 SET(CMAKE_STRIP $ENV{CROSS}strip)
 
-SET(CMAKE_C_FLAGS "-march=armv7 -mfpu=vfpv3 -mfloat-abi=hard -O3" CACHE STRING "" FORCE)
-SET(CMAKE_CXX_FLAGS "-march=armv7 -mfpu=vfpv3 -mfloat-abi=hard -O3 -std=c++1y" CACHE STRING "" FORCE)
-
+SET(CMAKE_C_FLAGS "-march=armv7 -mcpu=cortex-a7 -mtune=cortex-a7 -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -mfloat-abi=hard -O3" CACHE STRING "" FORCE)
+SET(CMAKE_CXX_FLAGS "-march=armv7 -mcpu=cortex-a7 -mtune=cortex-a7 -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -mfloat-abi=hard -O3 -std=c++1y" CACHE STRING "" FORCE)
 SET(ENV{OPENALDIR} ${CMAKE_CURRENT_LIST_DIR}/local/)
 
 # search for programs in the build host directories
