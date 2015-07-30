@@ -9,8 +9,8 @@ SET(CROSS /opt/x-tools7h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnuea
 
 SET(CMAKE_C_COMPILER ${CROSS}gcc)
 
-SET(CMAKE_C_FLAGS "-march=armv7 -mcpu=cortex-a7 -mtune=cortex-a7 -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -mfloat-abi=hard -O3" CACHE STRING "" FORCE)
-SET(CMAKE_CXX_FLAGS "-march=armv7 -mcpu=cortex-a7 -mtune=cortex-a7 -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -mfloat-abi=hard -O3 -std=c++1y" CACHE STRING "" FORCE)
+SET(CMAKE_C_FLAGS "-mcpu=cortex-a7 -mtune=cortex-a7 -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -mfloat-abi=hard -O3" CACHE STRING "" FORCE)
+SET(CMAKE_CXX_FLAGS "-mcpu=cortex-a7 -mtune=cortex-a7 -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -mfloat-abi=hard -O3 -std=c++1y" CACHE STRING "" FORCE)
 SET(ENV{OPENALDIR} ${CMAKE_CURRENT_LIST_DIR}/local/)
 
 # search for programs in the build host directories
