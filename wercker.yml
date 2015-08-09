@@ -6,10 +6,6 @@ build:
             name: Cross Compile doozy armv6
             code: |
                 bash ./build.sh archarmv6
-        - script:
-            name: Cross Compile doozy armv7
-            code: |
-                bash ./build.sh archarmv7
 
 deploy:
     steps:
@@ -32,4 +28,3 @@ deploy:
                 ls -la out/archarmv6/bin/
                 ls -la out/archarmv7/bin/
                 scp -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no out/archarmv6/bin/doozy dirk@dirkvdb.no-ip.biz:~/wercker/
-                scp -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no out/archarmv7/bin/doozy -P 4444 dirk@dirkvdb.no-ip.biz:~/wercker/
