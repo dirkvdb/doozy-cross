@@ -3,9 +3,9 @@ no-response-timeout: 10
 build:
     steps:
         - script:
-            name: Cross Compile doozy armv6
+            name: Cross Compile doozy armv7
             code: |
-                bash ./build.sh archarmv6
+                bash ./build.sh archarmv7
 
 deploy:
     steps:
