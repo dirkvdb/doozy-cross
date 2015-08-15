@@ -57,7 +57,7 @@ cp -r packages/raspifirmware/vc/lib/* cross/local/lib
 
 cd cross
 checkresult cmake ../packages -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
-checkresult make -j4
+checkresult make -j1
 cd ..
 
 # Cross Compile doozy
