@@ -1,4 +1,4 @@
-box: base/devel
+box: dirkvdb/archarm:v2
 no-response-timeout: 10
 build:
     steps:
@@ -28,8 +28,6 @@ deploy:
             name: transfer application
             code: |
                 pwd
-                ls -la
-                ls -la out/
                 ls -la out/archarmv6/bin/
                 ls -la out/archarmv7/bin/
                 scp -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no out/archarmv6/bin/doozy dirk@dirkvdb.no-ip.biz:~/wercker/
