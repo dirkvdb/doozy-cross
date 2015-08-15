@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 function checkresult {
@@ -57,7 +58,7 @@ cp -r packages/raspifirmware/vc/lib/* cross/local/lib
 
 cd cross
 checkresult cmake ../packages -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
-checkresult make -j1
+checkresult make -j4
 cd ..
 
 # Cross Compile doozy
