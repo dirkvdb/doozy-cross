@@ -1,4 +1,4 @@
-box: dirkvdb/cxx14arm
+box: base/devel
 no-response-timeout: 10
 build:
     steps:
