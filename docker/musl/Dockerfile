@@ -6,6 +6,8 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get upgrade -yy && \
     DEBIAN_FRONTEND=noninteractive apt-get install -yy \
         automake            \
+        libtool             \
+        cmake               \
         bison               \
         build-essential     \
         curl                \
