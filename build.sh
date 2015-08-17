@@ -20,7 +20,7 @@ if [ "$1" = "clean" ]; then
 fi
 
 if [ "$#" -ne 1 ]; then
-    echo "No toolchain provided: $1. Choices: archarmv6|archarmv7|macv6|android|macnative|macnative32"
+    echo "No toolchain provided: $1. Choices: archarmv6|archarmv7|armv7musl|macv6|android|macnative|macnative32"
     exit 1
 fi
 
@@ -34,12 +34,14 @@ elif [ "$1" = "archarmv6" ]; then
     TOOLCHAIN=toolchain-armv6.make
 elif [ "$1" = "archarmv7" ]; then
     TOOLCHAIN=toolchain-armv7.make
+elif [ "$1" = "armv7musl" ]; then
+    TOOLCHAIN=toolchain-armv7musl.make
 elif [ "$1" = "macv6" ]; then
     TOOLCHAIN=toolchain-armv6mac.make
 elif [ "$1" = "android" ]; then
     TOOLCHAIN=toolchain-androidv7.make
 else
-    echo "Unknown toolchain provided: $1. Choices: archarmv6|archarmv7|macv6|android|macnative|macnative32"
+    echo "Unknown toolchain provided: $1. Choices: archarmv6|archarmv7|armv7musl|macv6|android|macnative|macnative32"
     exit 1
 fi
 
@@ -66,7 +68,7 @@ rm -rf build
 mkdir -p build
 mkdir -p out
 cd build
-checkresult cmake ../doozy -DSTATIC_BINARY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN} -DCMAKE_INSTALL_PREFIX=${pwd}/out/$1
+checkresult cmake ../doozy -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN} -DCMAKE_INSTALL_PREFIX=${pwd}/out/$1
 checkresult make -j4
 checkresult make install
-#${CROSS}strip --strip-unneeded ./doozy
+
