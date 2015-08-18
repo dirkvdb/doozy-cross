@@ -45,6 +45,8 @@ else
     exit 1
 fi
 
+CROSS=`grep SET\(CROSS ${TOOLCHAIN} | cut -d " " -f2 | sed 's/)//'`
+
 export PKG_CONFIG_PATH=${pwd}/cross/local/lib/pkgconfig
 export PKG_CONFIG_LIBDIR=${PKG_CONFIG_PATH}
 export PKG_DIR=${pwd}/cross/local
@@ -69,3 +71,5 @@ cd build
 checkresult cmake ../doozy -DSTATIC_BINARY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN} -DCMAKE_INSTALL_PREFIX=${pwd}/out/$1
 checkresult make -j4
 checkresult make install
+${CROSS}strip -g ${pwd}/out/$1/doozy
+
