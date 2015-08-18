@@ -17,10 +17,10 @@ SET(CROSS_ARGS CC=${CMAKE_C_COMPILER} CXX=${CMAKE_CXX_COMPILER} AR=${CMAKE_AR} R
 IF (NOT "${HOST}" STREQUAL "arm-linux-musleabihf")
     ADD_SUBDIRECTORY(libplatform)
     ADD_SUBDIRECTORY(libcec)
-    ADD_SUBDIRECTORY(libunwind)
     ADD_SUBDIRECTORY(libxdg-basedir)
 ENDIF ()
 
+ADD_SUBDIRECTORY(libunwind)
 ADD_SUBDIRECTORY(ffmpeg)
 ADD_SUBDIRECTORY(libjpeg-turbo)
 ADD_SUBDIRECTORY(libmad)
