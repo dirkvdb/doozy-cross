@@ -69,4 +69,3 @@ cd build
 checkresult cmake ../doozy -DSTATIC_BINARY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN} -DCMAKE_INSTALL_PREFIX=${pwd}/out/$1
 checkresult make -j4
 checkresult make install
-

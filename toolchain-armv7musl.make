@@ -11,8 +11,7 @@ SET(CMAKE_C_COMPILER ${CROSS}gcc)
 
 SET(CMAKE_C_FLAGS "-mcpu=cortex-a7 -mtune=cortex-a7 -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -mfloat-abi=hard -O3" CACHE STRING "" FORCE)
 SET(CMAKE_CXX_FLAGS "-mcpu=cortex-a7 -mtune=cortex-a7 -mfpu=neon-vfpv4 -mvectorize-with-neon-quad -mfloat-abi=hard -O3 -std=c++1y" CACHE STRING "" FORCE)
-SET(CMAKE_EXE_LINKER_FLAGS "-Wl,-rpath-link,${CMAKE_CURRENT_LIST_DIR}/cross/local/lib")
-SET(CMAKE_EXE_LINKER_FLAGS_RELEASE "-s -static -static-libgcc -static-libstdc++" CACHE STRING "" FORCE)
+SET(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
 
 # search for programs in the build host directories
 SET(CMAKE_FIND_ROOT_PATH $ENV{PKG_DIR})
