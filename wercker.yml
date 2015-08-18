@@ -16,6 +16,11 @@ build:
             code: |
                 bash ./build.sh archarmv7
 
+        - script:
+            name: Cross Compile static doozy armv7
+            code: |
+                bash ./build.sh armv7musl
+
 deploy:
     steps:
         - add-to-known_hosts:
@@ -35,4 +40,5 @@ deploy:
                 ls -la out/archarmv6/bin/
                 ls -la out/archarmv7/bin/
                 scp -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no out/archarmv6/bin/doozy dirk@dirkvdb.no-ip.biz:~/wercker/
-                scp -P 4444 -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no out/archarmv6/bin/doozy dirk@dirkvdb.no-ip.biz:~/wercker/
+                scp -P 4444 -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no out/archarmv7/bin/doozy dirk@dirkvdb.no-ip.biz:~/wercker/
+                scp -P 4444 -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no out/armv7musl/bin/doozy dirk@dirkvdb.no-ip.biz:~/wercker/doozymusl
