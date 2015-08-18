@@ -55,8 +55,6 @@ export ac_cv_func_realloc_0_nonnull=yes
 rm -rf cross
 mkdir -p cross/local/include
 mkdir -p cross/local/lib
-cp -r packages/raspifirmware/vc/include/* cross/local/include/
-cp -r packages/raspifirmware/vc/lib/* cross/local/lib
 
 cd cross
 checkresult cmake ../packages -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
@@ -68,7 +66,7 @@ rm -rf build
 mkdir -p build
 mkdir -p out
 cd build
-checkresult cmake ../doozy -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN} -DCMAKE_INSTALL_PREFIX=${pwd}/out/$1
+checkresult cmake ../doozy -DSTATIC_BINARY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${pwd}/${TOOLCHAIN} -DCMAKE_INSTALL_PREFIX=${pwd}/out/$1
 checkresult make -j4
 checkresult make install
 
