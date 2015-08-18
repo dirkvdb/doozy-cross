@@ -4,8 +4,8 @@ SET(CMAKE_SYSTEM_NAME Linux)
 SET(CMAKE_SYSTEM_VERSION 1)
 
 SET(LIBTYPE STATIC)
-SET(HOST arm-linux-gnueabihf)
-SET(CROSS /opt/x-tools7h/arm-unknown-linux-gnueabihf/bin/arm-unknown-linux-gnueabihf-)
+SET(HOST arm-linux-musleabihf)
+SET(CROSS /opt/cross/arm-linux-musleabihf/bin/arm-linux-musleabihf-)
 
 SET(CMAKE_C_COMPILER ${CROSS}gcc)
 
