@@ -1,11 +1,13 @@
 # this one is important
-SET(CMAKE_SYSTEM_NAME Darwin)
+SET(CMAKE_SYSTEM_NAME Linux)
 #this one not so much
 SET(CMAKE_SYSTEM_VERSION 1)
 
 SET(LIBTYPE STATIC)
-SET(HOST x86_64-apple-darwin)
-SET(CMAKE_C_COMPILER clang)
+SET(HOST x86_64-linux-musl)
+SET(CROSS /home/dirk/cross/x86_64-linux-musl/bin/x86_64-linux-musl-)
+
+SET(CMAKE_C_COMPILER ${CROSS}gcc)
 
 SET(CMAKE_C_FLAGS_DEBUG "-g -O0" CACHE STRING "" FORCE)
 SET(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "" FORCE)

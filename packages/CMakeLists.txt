@@ -14,7 +14,8 @@ ENDIF ()
 
 SET(CROSS_ARGS CC=${CMAKE_C_COMPILER} CXX=${CMAKE_CXX_COMPILER} AR=${CMAKE_AR} RANLIB=${CMAKE_RANLIB} CFLAGS=${CFLAGS} CPPFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS} LDFLAGS=${LDFLAGS})
 
-IF (NOT "${HOST}" STREQUAL "arm-linux-musleabihf")
+IF (NOT HOST MATCHES "^.*musl.*")
+    # musl toolchain is used for static builds. libcec only builds shared library
     ADD_SUBDIRECTORY(libplatform)
     ADD_SUBDIRECTORY(libcec)
     ADD_SUBDIRECTORY(libxdg-basedir)

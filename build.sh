@@ -19,15 +19,23 @@ if [ "$1" = "clean" ]; then
     exit 0
 fi
 
-if [ "$#" -ne 1 ]; then
+if [ "$#" -eq 0 ]; then
     echo "No toolchain provided: $1. Choices: archarmv6|archarmv7|armv7musl|macv6|android|macnative|macnative32"
     exit 1
 fi
 
 pwd=`pwd`
 
-if [ "$1" = "macnative" ]; then
-    TOOLCHAIN=toolchain-native.make
+if [ "$1" = "native" ]; then
+    host=`uname`
+    if [ "$host" = "Darwin" ]; then
+        TOOLCHAIN=toolchain-native.make
+    elif [ "$host" = "Linux" ]; then
+        TOOLCHAIN=toolchain-native-linux.make
+    else
+        echo "Unknown host: $host"
+        exit 1
+    fi
 elif [ "$1" = "macnative32" ]; then
     TOOLCHAIN=toolchain-native-32.make
 elif [ "$1" = "archarmv6" ]; then
@@ -41,7 +49,7 @@ elif [ "$1" = "macv6" ]; then
 elif [ "$1" = "android" ]; then
     TOOLCHAIN=toolchain-androidv7.make
 else
-    echo "Unknown toolchain provided: $1. Choices: archarmv6|archarmv7|armv7musl|macv6|android|macnative|macnative32"
+    echo "Unknown toolchain provided: $1. Choices: archarmv6|archarmv7|armv7musl|macv6|android|native|native32"
     exit 1
 fi
 
@@ -53,15 +61,18 @@ export PKG_DIR=${pwd}/cross/local
 export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 
-# cross compile dependencies
-rm -rf cross
-mkdir -p cross/local/include
-mkdir -p cross/local/lib
 
-cd cross
-checkresult cmake ../packages -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
-checkresult make -j4
-cd ..
+if [ "$2" != "skipdeps" ]; then
+    # cross compile dependencies
+    rm -rf cross
+    mkdir -p cross/local/include
+    mkdir -p cross/local/lib
+
+    cd cross
+    checkresult cmake ../packages -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../${TOOLCHAIN}
+    checkresult make -j4
+    cd ..
+fi
 
 # Cross Compile doozy
 rm -rf build
