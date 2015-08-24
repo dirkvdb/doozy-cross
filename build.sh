@@ -20,7 +20,7 @@ if [ "$1" = "clean" ]; then
 fi
 
 if [ "$#" -eq 0 ]; then
-    echo "No toolchain provided: $1. Choices: archarmv6|archarmv7|armv7musl|macv6|android|macnative|macnative32"
+    echo "No toolchain provided: $1. Choices: archarmv6|archarmv7|armv7musl|macv6|android|macnative|macnative32|mingw"
     exit 1
 fi
 
@@ -48,8 +48,10 @@ elif [ "$1" = "macv6" ]; then
     TOOLCHAIN=toolchain-armv6mac.make
 elif [ "$1" = "android" ]; then
     TOOLCHAIN=toolchain-androidv7.make
+elif [ "$1" = "mingw" ]; then
+    TOOLCHAIN=toolchain-mingw.make
 else
-    echo "Unknown toolchain provided: $1. Choices: archarmv6|archarmv7|armv7musl|macv6|android|native|native32"
+    echo "Unknown toolchain provided: $1. Choices: archarmv6|archarmv7|armv7musl|macv6|android|native|native32|mingw"
     exit 1
 fi
 

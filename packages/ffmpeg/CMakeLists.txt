@@ -19,6 +19,10 @@ IF (CMAKE_SYSTEM_NAME MATCHES "Darwin")
 
     # make sure gas-preprocessor.pl is in the path
     SET($ENV{PATH} "$ENV{PATH}:${CMAKE_CURRENT_SOURCE_DIR}")
+ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
+    SET(ARCHSETTING --arch=x86_64)
+    SET(COMPSETTING --enable-cross-compile --cross-prefix=${CROSS})
+    SET(TARGETSETTING --target-os=mingw32)
 ELSE ()
     SET(TARGETSETTING --target-os=linux)
     IF(HOST MATCHES "^arm-linux-.*")
