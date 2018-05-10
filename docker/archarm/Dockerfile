@@ -1,4 +1,4 @@
-FROM base/archlinux:2015.06.01
+FROM base/archlinux:2018.05.01
 MAINTAINER Dirk Vanden Boer <dirk.vdb@gmail.com>
 RUN pacman -Syu --noconfirm
 RUN pacman -S --noconfirm git cmake gcc flex make patch ninja autoconf automake pkgconfig openssh
